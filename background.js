@@ -5,12 +5,12 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
     // Grab the value that comes after the watch?v= portion of URL
     const queryParameters = tab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
+    console.log(urlParameters);
 
     // Send a message to contentScript saying a new video has loaded and this is the videoId(unique value of the URL) of that video
     chrome.tabs.sendMessage(tabId, {
       type: "NEW",
-      videoId: urlParameters.get("v")
+      videoId: urlParameters.get("v"),
     });
   }
-  
-})
+});
